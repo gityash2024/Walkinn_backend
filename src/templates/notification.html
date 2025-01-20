@@ -1,0 +1,28 @@
+export const notificationTemplate = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Notification</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .notification { padding: 20px; background-color: #f8f9fa; border-radius: 5px; }
+        .title { color: #fa383e; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="notification">
+            <h2 class="title">{{title}}</h2>
+            <p>{{message}}</p>
+            {{#if actionUrl}}
+            <p>
+                <a href="{{actionUrl}}" style="color: #fa383e;">Click here</a> for more details.
+            </p>
+            {{/if}}
+        </div>
+    </div>
+</body>
+</html>
+`;

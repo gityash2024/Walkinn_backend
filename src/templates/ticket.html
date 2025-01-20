@@ -1,0 +1,56 @@
+export const ticketTemplate = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Event Ticket</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .ticket {
+            border: 2px solid #fa383e;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .qr-code {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .ticket-details {
+            margin: 20px 0;
+        }
+        .important-note {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="ticket">
+            <h1 style="text-align: center;">Event Ticket</h1>
+            
+            <div class="ticket-details">
+                <p><strong>Event:</strong> {{eventName}}</p>
+                <p><strong>Date:</strong> {{eventDate}}</p>
+                <p><strong>Time:</strong> {{eventTime}}</p>
+                <p><strong>Venue:</strong> {{venue}}</p>
+                <p><strong>Ticket Type:</strong> {{ticketType}}</p>
+                <p><strong>Ticket ID:</strong> {{ticketId}}</p>
+            </div>
+            
+            <div class="qr-code">
+                <img src="{{qrCodeUrl}}" alt="QR Code">
+            </div>
+            
+            <div class="important-note">
+                <p>Please present this ticket at the venue entrance. Each ticket is valid for one-time entry only.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+`;

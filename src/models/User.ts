@@ -1,36 +1,52 @@
-import mongoose, { Document } from 'mongoose';
+import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
-
-export interface IUser extends Document {
-  username: string;
-  email: string;
-  password: string;
-  role: 'admin' | 'user' | 'agent' | 'scanner';
-  comparePassword(candidatePassword: string): Promise<boolean>;
-}
+import { IUser } from '../interfaces';
 
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
     unique: true,
+    trim: true
   },
   email: {
     type: String,
     required: true,
     unique: true,
+    lowercase: true,
+    trim: true
   },
   password: {
     type: String,
     required: true,
+    minlength: 6
   },
   role: {
     type: String,
     enum: ['admin', 'user', 'agent', 'scanner'],
-    default: 'user',
+    default: 'user'
   },
+  firstName: String,
+  lastName: String,
+  phone: String,
+  avatar: String,
+  isActive: {
+    type: Boolean,
+    default: true
+  },
+  lastLogin: Date,
+  refreshToken: String,
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
 }, {
   timestamps: true,
+  toJSON: {
+    transform(doc, ret) {
+      delete ret.password;
+      delete ret.__v;
+      return ret;
+    }
+  }
 });
 
 userSchema.pre('save', async function(next) {
